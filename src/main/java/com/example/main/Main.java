@@ -1,7 +1,9 @@
 package com.example.main;
 
 import com.example.config.SftpConfig;
+import com.example.util.CryptoUtil;
 import com.example.util.SFTPUtil;
+import org.junit.jupiter.api.Test;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
@@ -41,7 +43,14 @@ public class Main {
             // 服务端目录
             String remoteDir = "/home/bigdata/bin/";
 
-            SftpConfig sftpConfig = new SftpConfig(ip, Integer.parseInt(port), username, password, Integer.parseInt(timeout), remoteDir);
+            // 解密原始数据
+            SftpConfig sftpConfig = new SftpConfig(
+                    CryptoUtil.decode(ip),
+                    Integer.parseInt(port),
+                    CryptoUtil.decode(username),
+                    CryptoUtil.decode(password),
+                    Integer.parseInt(timeout),
+                    remoteDir);
 
             // 列出目录下的文件
             List<String> list = ftp.listFiles("/home/bigdata/bin/", sftpConfig);
@@ -56,5 +65,16 @@ public class Main {
         } catch (Exception e) {
             logger.error("文件上传下载异常:[{}]", e.getMessage());
         }
+    }
+
+
+    @Test
+    public void test() {
+        // Basic String Encoding and Decoding use Base64
+        String str = "*******";
+        String encodeStr = CryptoUtil.encode(str);
+        logger.info("{}加密为: {}", str, encodeStr);
+        String decodeStr = CryptoUtil.decode(encodeStr);
+        logger.info("{}解密后为: {}", encodeStr, decodeStr);
     }
 }
