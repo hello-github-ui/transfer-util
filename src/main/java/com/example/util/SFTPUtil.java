@@ -39,7 +39,7 @@ public class SFTPUtil {
             JSch jsch = new JSch();
             jsch.getSession(sftpConfig.getUsername(), sftpConfig.getHostname(), sftpConfig.getPort());
             Session sshSession = jsch.getSession(sftpConfig.getUsername(), sftpConfig.getHostname(), sftpConfig.getPort());
-            logger.info("Session created ... UserName=" + sftpConfig.getUsername() + ";host=" + sftpConfig.getHostname() + ";port=" + sftpConfig.getPort());
+            logger.info("Session created ... UserName={} host={} port={}", sftpConfig.getUsername(), sftpConfig.getHostname(), sftpConfig.getPort());
             sshSession.setPassword(sftpConfig.getPassword());
             Properties sshConfig = new Properties();
             sshConfig.put("StrictHostKeyChecking", "no");
@@ -234,7 +234,7 @@ public class SFTPUtil {
      */
     public List<String> listFiles(String directory, SftpConfig sftpConfig) throws SftpException {
         ChannelSftp sftp = connect(sftpConfig);
-        List fileNameList = new ArrayList();
+        List<String> fileNameList = new ArrayList<String>();
         try {
             sftp.cd(directory);
         } catch (SftpException e) {
@@ -267,6 +267,9 @@ public class SFTPUtil {
         }
     }
 
+    /**
+     * 构造器
+     */
     public SFTPUtil(long count, long sleepTime) {
         this.count = count;
         this.sleepTime = sleepTime;

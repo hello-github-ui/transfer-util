@@ -36,15 +36,22 @@
         <dependency>
             <groupId>org.slf4j</groupId>
             <artifactId>slf4j-api</artifactId>
-            <version>1.7.36</version>
+            <version>1.7.25</version>
         </dependency>
 
-        <!--解决 slf4j 单独引入报错-->
+        <!--slf4j 配合-->
         <dependency>
             <groupId>org.slf4j</groupId>
-            <artifactId>slf4j-simple</artifactId>
-            <version>1.7.36</version>
-            <scope>compile</scope>
+            <artifactId>slf4j-log4j12</artifactId>
+            <version>1.7.25</version>
+        </dependency>
+
+        <!-- junit-jupiter 就是常用JUnit 5模块的聚合包 -->
+        <dependency>
+            <groupId>org.junit.jupiter</groupId>
+            <artifactId>junit-jupiter-api</artifactId>
+            <version>5.8.2</version>
+            <scope>test</scope>
         </dependency>
 
         <dependency>
@@ -58,6 +65,7 @@
                 </exclusion>
             </exclusions>-->
         </dependency>
+
     </dependencies>
 
     <build>
