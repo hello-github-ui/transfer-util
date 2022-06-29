@@ -3,7 +3,7 @@ package com.example.main;
 import com.example.config.SftpConfig;
 import com.example.util.CryptoUtil;
 import com.example.util.SFTPUtil;
-import org.junit.jupiter.api.Test;
+import org.junit.Test;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
